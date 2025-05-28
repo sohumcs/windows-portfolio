@@ -9,6 +9,7 @@ import { Connect } from './windows/Connect';
 import { Experience } from './windows/Experience';
 import { Terminal } from './windows/Terminal';
 import { RecycleBin } from './windows/RecycleBin';
+import { ThemeSettings } from './windows/ThemeSettings';
 
 interface WindowManagerProps {
   windows: WindowConfig[];
@@ -43,6 +44,8 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
         return <Terminal />;
       case 'RecycleBin':
         return <RecycleBin />;
+      case 'ThemeSettings':
+        return <ThemeSettings />;
       default:
         return <div className="p-4">Content not found</div>;
     }

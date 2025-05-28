@@ -68,7 +68,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
   if (window.isMinimized) return null;
 
   const windowStyle = window.isMaximized
-    ? { top: 0, left: 0, width: '100vw', height: 'calc(100vh - 40px)' }
+    ? { top: 0, left: 0, width: '100vw', height: 'calc(100vh - 48px)' }
     : {
         top: window.position.y,
         left: window.position.x,

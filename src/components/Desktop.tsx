@@ -5,7 +5,7 @@ import { WindowManager } from './WindowManager';
 import { ModernTaskbar } from './ModernTaskbar';
 import { ModernStartMenu } from './ModernStartMenu';
 import { NotificationSystem } from './NotificationSystem';
-import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal } from 'lucide-react';
+import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal, Palette } from 'lucide-react';
 
 export interface WindowConfig {
   id: string;
@@ -25,13 +25,54 @@ export const Desktop = () => {
   const [notifications, setNotifications] = useState<Array<{id: string, message: string, type: 'info' | 'success' | 'warning'}>>([]);
 
   const desktopIcons = [
-    { id: 'about', title: 'About Me', icon: <User className="w-10 h-10" />, component: 'AboutMe' },
-    { id: 'projects', title: 'My Projects', icon: <Briefcase className="w-10 h-10" />, component: 'Projects' },
-    { id: 'resume', title: 'Resume', icon: <FileText className="w-10 h-10" />, component: 'Resume' },
-    { id: 'connect', title: 'Connect', icon: <ExternalLink className="w-10 h-10" />, component: 'Connect' },
-    { id: 'experience', title: 'Work Experience', icon: <Clock className="w-10 h-10" />, component: 'Experience' },
-    { id: 'terminal', title: 'Terminal', icon: <Terminal className="w-10 h-10" />, component: 'Terminal' },
-    { id: 'recycle', title: 'Recycle Bin', icon: <Trash2 className="w-10 h-10" />, component: 'RecycleBin' },
+    { 
+      id: 'about', 
+      title: 'About Me', 
+      icon: <User className="w-10 h-10 text-blue-500" />, 
+      component: 'AboutMe' 
+    },
+    { 
+      id: 'projects', 
+      title: 'My Projects', 
+      icon: <Briefcase className="w-10 h-10 text-green-500" />, 
+      component: 'Projects' 
+    },
+    { 
+      id: 'resume', 
+      title: 'Resume', 
+      icon: <FileText className="w-10 h-10 text-red-500" />, 
+      component: 'Resume' 
+    },
+    { 
+      id: 'connect', 
+      title: 'Connect', 
+      icon: <ExternalLink className="w-10 h-10 text-purple-500" />, 
+      component: 'Connect' 
+    },
+    { 
+      id: 'experience', 
+      title: 'Work Experience', 
+      icon: <Clock className="w-10 h-10 text-orange-500" />, 
+      component: 'Experience' 
+    },
+    { 
+      id: 'terminal', 
+      title: 'Terminal', 
+      icon: <Terminal className="w-10 h-10 text-gray-600" />, 
+      component: 'Terminal' 
+    },
+    { 
+      id: 'theme', 
+      title: 'Theme Settings', 
+      icon: <Palette className="w-10 h-10 text-pink-500" />, 
+      component: 'ThemeSettings' 
+    },
+    { 
+      id: 'recycle', 
+      title: 'Recycle Bin', 
+      icon: <Trash2 className="w-10 h-10 text-gray-500" />, 
+      component: 'RecycleBin' 
+    },
   ];
 
   const openWindow = (iconConfig: any) => {
@@ -90,32 +131,40 @@ export const Desktop = () => {
     }, 4000);
   };
 
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+    addNotification(`Switched to ${isDark ? 'Light' : 'Dark'} mode`, 'success');
+  };
+
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}>
-      {/* Modern Windows 10/11 Background */}
+      {/* Background with uploaded image */}
       <div 
         className="min-h-screen bg-cover bg-center relative"
         style={{
-          backgroundImage: isDark 
-            ? "linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)"
-            : "linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #74b9ff 100%)",
+          backgroundImage: `url('/lovable-uploads/fdd6a3b7-415d-4e64-a0c4-c717fdfa2578.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
         }}
         onClick={() => setShowStartMenu(false)}
       >
-        {/* Glass effect overlay */}
-        <div className="absolute inset-0 bg-black/5 backdrop-blur-[1px]" />
+        {/* Dark theme overlay */}
+        {isDark && <div className="absolute inset-0 bg-black/40" />}
 
-        {/* Desktop Icons Grid */}
-        <div className="absolute inset-0 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 content-start">
-          {desktopIcons.map((icon, index) => (
-            <DesktopIcon
-              key={icon.id}
-              {...icon}
-              onClick={() => openWindow(icon)}
-              style={{ animationDelay: `${index * 100}ms` }}
-              isDark={isDark}
-            />
-          ))}
+        {/* Desktop Icons Grid - Aligned to the left */}
+        <div className="absolute inset-0 p-6">
+          <div className="flex flex-col gap-4 items-start">
+            {desktopIcons.map((icon, index) => (
+              <DesktopIcon
+                key={icon.id}
+                {...icon}
+                onClick={() => openWindow(icon)}
+                style={{ animationDelay: `${index * 100}ms` }}
+                isDark={isDark}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Window Manager */}
@@ -132,7 +181,7 @@ export const Desktop = () => {
         {showStartMenu && (
           <ModernStartMenu
             onClose={() => setShowStartMenu(false)}
-            onThemeToggle={() => setIsDark(!isDark)}
+            onThemeToggle={toggleTheme}
             onOpenAll={() => {
               desktopIcons.slice(0, 5).forEach(icon => openWindow(icon));
               addNotification('All windows opened!', 'success');
