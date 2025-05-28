@@ -80,8 +80,8 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
     <div
       ref={windowRef}
       className={`
-        fixed z-50 rounded-lg shadow-2xl border animate-scale-in
-        ${isDark ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'}
+        fixed z-50 rounded-lg shadow-2xl border animate-scale-in backdrop-blur-sm
+        ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'}
         ${isDragging ? 'cursor-grabbing' : ''}
       `}
       style={windowStyle}
@@ -89,40 +89,40 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
       {/* Title Bar */}
       <div
         className={`
-          flex items-center justify-between px-2 py-1 rounded-t-lg cursor-grab active:cursor-grabbing
+          flex items-center justify-between px-4 py-2 rounded-t-lg cursor-grab active:cursor-grabbing
           ${isDark 
-            ? 'bg-gradient-to-r from-gray-700 to-gray-600 border-b border-gray-600' 
-            : 'bg-gradient-to-r from-blue-500 to-blue-600 border-b border-gray-300'
+            ? 'bg-gray-800/90 border-b border-gray-700' 
+            : 'bg-gray-50/90 border-b border-gray-200'
           }
         `}
         onMouseDown={handleMouseDown}
       >
-        <div className="flex items-center gap-2">
-          <div className="text-white text-sm">{window.icon}</div>
-          <span className="text-white font-medium text-sm">{window.title}</span>
+        <div className="flex items-center gap-3">
+          <div className={`text-lg ${isDark ? 'text-white' : 'text-gray-800'}`}>{window.icon}</div>
+          <span className={`font-medium text-sm ${isDark ? 'text-white' : 'text-gray-800'}`}>{window.title}</span>
         </div>
         
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           <button
             onClick={onMinimize}
-            className="w-6 h-6 bg-yellow-500 hover:bg-yellow-400 rounded-sm flex items-center justify-center transition-colors"
+            className="w-8 h-8 bg-transparent hover:bg-gray-500/20 rounded flex items-center justify-center transition-colors group"
             title="Minimize"
           >
-            <Minus className="w-3 h-3 text-black" />
+            <Minus className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-600'} group-hover:text-white`} />
           </button>
           <button
             onClick={onMaximize}
-            className="w-6 h-6 bg-green-500 hover:bg-green-400 rounded-sm flex items-center justify-center transition-colors"
+            className="w-8 h-8 bg-transparent hover:bg-gray-500/20 rounded flex items-center justify-center transition-colors group"
             title="Maximize"
           >
-            <Square className="w-3 h-3 text-black" />
+            <Square className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-600'} group-hover:text-white`} />
           </button>
           <button
             onClick={onClose}
-            className="w-6 h-6 bg-red-500 hover:bg-red-400 rounded-sm flex items-center justify-center transition-colors"
+            className="w-8 h-8 bg-transparent hover:bg-red-500 rounded flex items-center justify-center transition-colors group"
             title="Close"
           >
-            <X className="w-3 h-3 text-white" />
+            <X className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-600'} group-hover:text-white`} />
           </button>
         </div>
       </div>

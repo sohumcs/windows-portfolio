@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { DesktopIcon } from './DesktopIcon';
 import { WindowManager } from './WindowManager';
-import { Taskbar } from './Taskbar';
-import { StartMenu } from './StartMenu';
+import { ModernTaskbar } from './ModernTaskbar';
+import { ModernStartMenu } from './ModernStartMenu';
 import { NotificationSystem } from './NotificationSystem';
 import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal } from 'lucide-react';
 
@@ -25,19 +25,18 @@ export const Desktop = () => {
   const [notifications, setNotifications] = useState<Array<{id: string, message: string, type: 'info' | 'success' | 'warning'}>>([]);
 
   const desktopIcons = [
-    { id: 'about', title: 'About Me', icon: <User className="w-8 h-8" />, component: 'AboutMe' },
-    { id: 'projects', title: 'My Projects', icon: <Briefcase className="w-8 h-8" />, component: 'Projects' },
-    { id: 'resume', title: 'Resume', icon: <FileText className="w-8 h-8" />, component: 'Resume' },
-    { id: 'connect', title: 'Connect', icon: <ExternalLink className="w-8 h-8" />, component: 'Connect' },
-    { id: 'experience', title: 'Work Experience', icon: <Clock className="w-8 h-8" />, component: 'Experience' },
-    { id: 'terminal', title: 'Terminal', icon: <Terminal className="w-8 h-8" />, component: 'Terminal' },
-    { id: 'recycle', title: 'Recycle Bin', icon: <Trash2 className="w-8 h-8" />, component: 'RecycleBin' },
+    { id: 'about', title: 'About Me', icon: <User className="w-10 h-10" />, component: 'AboutMe' },
+    { id: 'projects', title: 'My Projects', icon: <Briefcase className="w-10 h-10" />, component: 'Projects' },
+    { id: 'resume', title: 'Resume', icon: <FileText className="w-10 h-10" />, component: 'Resume' },
+    { id: 'connect', title: 'Connect', icon: <ExternalLink className="w-10 h-10" />, component: 'Connect' },
+    { id: 'experience', title: 'Work Experience', icon: <Clock className="w-10 h-10" />, component: 'Experience' },
+    { id: 'terminal', title: 'Terminal', icon: <Terminal className="w-10 h-10" />, component: 'Terminal' },
+    { id: 'recycle', title: 'Recycle Bin', icon: <Trash2 className="w-10 h-10" />, component: 'RecycleBin' },
   ];
 
   const openWindow = (iconConfig: any) => {
     const existingWindow = openWindows.find(w => w.id === iconConfig.id);
     if (existingWindow) {
-      // Bring to front and unminimize if minimized
       setOpenWindows(prev => prev.map(w => 
         w.id === iconConfig.id 
           ? { ...w, isMinimized: false }
@@ -51,15 +50,13 @@ export const Desktop = () => {
       title: iconConfig.title,
       component: iconConfig.component,
       icon: iconConfig.icon,
-      position: { x: 100 + openWindows.length * 30, y: 100 + openWindows.length * 30 },
-      size: { width: 800, height: 600 },
+      position: { x: 100 + openWindows.length * 30, y: 80 + openWindows.length * 30 },
+      size: { width: 900, height: 700 },
       isMinimized: false,
       isMaximized: false,
     };
 
     setOpenWindows(prev => [...prev, newWindow]);
-    
-    // Show notification
     addNotification(`${iconConfig.title} opened`, 'info');
   };
 
@@ -90,29 +87,33 @@ export const Desktop = () => {
     setNotifications(prev => [...prev, { id, message, type }]);
     setTimeout(() => {
       setNotifications(prev => prev.filter(n => n.id !== id));
-    }, 3000);
+    }, 4000);
   };
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}>
-      {/* Desktop Background */}
+      {/* Modern Windows 10/11 Background */}
       <div 
         className="min-h-screen bg-cover bg-center relative"
         style={{
           backgroundImage: isDark 
-            ? "linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%)"
-            : "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><radialGradient id=\"a\" cx=\"50\" cy=\"50\" r=\"50\"><stop offset=\"0\" style=\"stop-color:%2387CEEB\"/><stop offset=\"1\" style=\"stop-color:%234682B4\"/></radialGradient></defs><rect width=\"100\" height=\"100\" fill=\"url(%23a)\"/></svg>')"
+            ? "linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)"
+            : "linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #74b9ff 100%)",
         }}
         onClick={() => setShowStartMenu(false)}
       >
+        {/* Glass effect overlay */}
+        <div className="absolute inset-0 bg-black/5 backdrop-blur-[1px]" />
+
         {/* Desktop Icons Grid */}
-        <div className="absolute inset-0 p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 content-start">
+        <div className="absolute inset-0 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 content-start">
           {desktopIcons.map((icon, index) => (
             <DesktopIcon
               key={icon.id}
               {...icon}
               onClick={() => openWindow(icon)}
               style={{ animationDelay: `${index * 100}ms` }}
+              isDark={isDark}
             />
           ))}
         </div>
@@ -127,9 +128,9 @@ export const Desktop = () => {
           isDark={isDark}
         />
 
-        {/* Start Menu */}
+        {/* Modern Start Menu */}
         {showStartMenu && (
-          <StartMenu
+          <ModernStartMenu
             onClose={() => setShowStartMenu(false)}
             onThemeToggle={() => setIsDark(!isDark)}
             onOpenAll={() => {
@@ -140,8 +141,8 @@ export const Desktop = () => {
           />
         )}
 
-        {/* Taskbar */}
-        <Taskbar
+        {/* Modern Taskbar */}
+        <ModernTaskbar
           openWindows={openWindows}
           onStartClick={() => setShowStartMenu(!showStartMenu)}
           onWindowClick={(id) => {
