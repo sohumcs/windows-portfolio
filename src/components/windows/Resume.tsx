@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FileText, Download, Print } from 'lucide-react';
+import { FileText, Download, Printer } from 'lucide-react';
 
 export const Resume = () => {
   return (
@@ -17,7 +17,7 @@ export const Resume = () => {
             Download
           </button>
           <button className="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors">
-            <Print className="w-3 h-3 inline mr-1" />
+            <Printer className="w-3 h-3 inline mr-1" />
             Print
           </button>
         </div>
