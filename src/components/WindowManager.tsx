@@ -10,6 +10,9 @@ import { Experience } from './windows/Experience';
 import { Terminal } from './windows/Terminal';
 import { RecycleBin } from './windows/RecycleBin';
 import { ThemeSettings } from './windows/ThemeSettings';
+import { MySpace } from './windows/MySpace';
+import { Games } from './windows/Games';
+import { Browser } from './windows/Browser';
 
 interface WindowManagerProps {
   windows: WindowConfig[];
@@ -46,6 +49,12 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
         return <RecycleBin />;
       case 'ThemeSettings':
         return <ThemeSettings />;
+      case 'MySpace':
+        return <MySpace />;
+      case 'Games':
+        return <Games />;
+      case 'Browser':
+        return <Browser />;
       default:
         return <div className="p-4">Content not found</div>;
     }

@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { DesktopIcon } from './DesktopIcon';
 import { WindowManager } from './WindowManager';
 import { ModernTaskbar } from './ModernTaskbar';
 import { ModernStartMenu } from './ModernStartMenu';
 import { NotificationSystem } from './NotificationSystem';
-import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal, Palette } from 'lucide-react';
+import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal, Palette, Gamepad, Search, Book } from 'lucide-react';
 
 export interface WindowConfig {
   id: string;
@@ -65,6 +66,24 @@ export const Desktop = () => {
       title: 'Theme Settings', 
       icon: <Palette className="w-8 h-8 text-pink-600" />, 
       component: 'ThemeSettings' 
+    },
+    { 
+      id: 'myspace', 
+      title: 'MySpace', 
+      icon: <Book className="w-8 h-8 text-cyan-600" />, 
+      component: 'MySpace' 
+    },
+    { 
+      id: 'games', 
+      title: 'Games', 
+      icon: <Gamepad className="w-8 h-8 text-indigo-600" />, 
+      component: 'Games' 
+    },
+    { 
+      id: 'browser', 
+      title: 'Internet Explorer', 
+      icon: <Search className="w-8 h-8 text-blue-800" />, 
+      component: 'Browser' 
     },
     { 
       id: 'recycle', 
@@ -135,36 +154,65 @@ export const Desktop = () => {
     addNotification(`Switched to ${isDark ? 'Light' : 'Dark'} mode`, 'success');
   };
 
-  return (
-    <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}>
-      {/* Classic Windows 95 Teal Background */}
-      <div 
-        className={`min-h-screen relative overflow-hidden ${
-          isDark 
-            ? 'bg-gradient-to-br from-gray-800 via-gray-900 to-black' 
-            : 'bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-500'
-        }`}
-        onClick={() => setShowStartMenu(false)}
-      >
-        {/* Desktop Pattern Overlay */}
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+  const handleStartClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowStartMenu(!showStartMenu);
+  };
 
-        {/* Desktop Icons Grid - Responsive layout */}
+  // Calculate grid layout for icons
+  const getIconsInColumns = () => {
+    const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+    const taskbarHeight = 48;
+    const iconHeight = 80;
+    const topPadding = 16;
+    const availableHeight = screenHeight - taskbarHeight - topPadding;
+    const iconsPerColumn = Math.floor(availableHeight / iconHeight);
+    
+    const columns: any[][] = [];
+    let currentColumn = 0;
+    
+    desktopIcons.forEach((icon, index) => {
+      if (!columns[currentColumn]) {
+        columns[currentColumn] = [];
+      }
+      
+      columns[currentColumn].push(icon);
+      
+      if ((index + 1) % iconsPerColumn === 0) {
+        currentColumn++;
+      }
+    });
+    
+    return columns;
+  };
+
+  return (
+    <div 
+      className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}
+      onClick={() => setShowStartMenu(false)}
+    >
+      {/* Windows 95 Blue Sky Background */}
+      <div 
+        className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/lovable-uploads/5f85bb9d-f696-471b-9300-4553b6e2010e.png')`,
+          backgroundColor: '#008080'
+        }}
+      >
+        {/* Desktop Icons in Column Layout */}
         <div className="absolute inset-0 p-4 pb-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 h-full content-start">
-            {desktopIcons.map((icon, index) => (
-              <div key={icon.id} className="flex justify-center">
-                <DesktopIcon
-                  {...icon}
-                  onClick={() => openWindow(icon)}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                  isDark={isDark}
-                />
+          <div className="flex gap-2 h-full">
+            {getIconsInColumns().map((column, columnIndex) => (
+              <div key={columnIndex} className="flex flex-col gap-2">
+                {column.map((icon, index) => (
+                  <DesktopIcon
+                    key={icon.id}
+                    {...icon}
+                    onClick={() => openWindow(icon)}
+                    style={{ animationDelay: `${(columnIndex * column.length + index) * 100}ms` }}
+                    isDark={isDark}
+                  />
+                ))}
               </div>
             ))}
           </div>
@@ -180,7 +228,7 @@ export const Desktop = () => {
           isDark={isDark}
         />
 
-        {/* Modern Start Menu */}
+        {/* Start Menu */}
         {showStartMenu && (
           <ModernStartMenu
             onClose={() => setShowStartMenu(false)}
@@ -193,10 +241,10 @@ export const Desktop = () => {
           />
         )}
 
-        {/* Modern Taskbar */}
+        {/* Taskbar */}
         <ModernTaskbar
           openWindows={openWindows}
-          onStartClick={() => setShowStartMenu(!showStartMenu)}
+          onStartClick={handleStartClick}
           onWindowClick={(id) => {
             const window = openWindows.find(w => w.id === id);
             if (window?.isMinimized) {
