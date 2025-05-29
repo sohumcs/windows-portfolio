@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DesktopIcon } from './DesktopIcon';
 import { WindowManager } from './WindowManager';
@@ -28,49 +27,49 @@ export const Desktop = () => {
     { 
       id: 'about', 
       title: 'About Me', 
-      icon: <User className="w-10 h-10 text-blue-500" />, 
+      icon: <User className="w-8 h-8 text-blue-600" />, 
       component: 'AboutMe' 
     },
     { 
       id: 'projects', 
       title: 'My Projects', 
-      icon: <Briefcase className="w-10 h-10 text-green-500" />, 
+      icon: <Briefcase className="w-8 h-8 text-green-600" />, 
       component: 'Projects' 
     },
     { 
       id: 'resume', 
       title: 'Resume', 
-      icon: <FileText className="w-10 h-10 text-red-500" />, 
+      icon: <FileText className="w-8 h-8 text-red-600" />, 
       component: 'Resume' 
     },
     { 
       id: 'connect', 
       title: 'Connect', 
-      icon: <ExternalLink className="w-10 h-10 text-purple-500" />, 
+      icon: <ExternalLink className="w-8 h-8 text-purple-600" />, 
       component: 'Connect' 
     },
     { 
       id: 'experience', 
       title: 'Work Experience', 
-      icon: <Clock className="w-10 h-10 text-orange-500" />, 
+      icon: <Clock className="w-8 h-8 text-orange-600" />, 
       component: 'Experience' 
     },
     { 
       id: 'terminal', 
       title: 'Terminal', 
-      icon: <Terminal className="w-10 h-10 text-gray-600" />, 
+      icon: <Terminal className="w-8 h-8 text-gray-800" />, 
       component: 'Terminal' 
     },
     { 
       id: 'theme', 
       title: 'Theme Settings', 
-      icon: <Palette className="w-10 h-10 text-pink-500" />, 
+      icon: <Palette className="w-8 h-8 text-pink-600" />, 
       component: 'ThemeSettings' 
     },
     { 
       id: 'recycle', 
       title: 'Recycle Bin', 
-      icon: <Trash2 className="w-10 h-10 text-gray-500" />, 
+      icon: <Trash2 className="w-8 h-8 text-gray-600" />, 
       component: 'RecycleBin' 
     },
   ];
@@ -138,31 +137,35 @@ export const Desktop = () => {
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}>
-      {/* Background with uploaded image */}
+      {/* Classic Windows 95 Teal Background */}
       <div 
-        className="min-h-screen bg-cover bg-center relative"
-        style={{
-          backgroundImage: `url('/lovable-uploads/fdd6a3b7-415d-4e64-a0c4-c717fdfa2578.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
+        className={`min-h-screen relative overflow-hidden ${
+          isDark 
+            ? 'bg-gradient-to-br from-gray-800 via-gray-900 to-black' 
+            : 'bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-500'
+        }`}
         onClick={() => setShowStartMenu(false)}
       >
-        {/* Dark theme overlay */}
-        {isDark && <div className="absolute inset-0 bg-black/40" />}
+        {/* Desktop Pattern Overlay */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
 
-        {/* Desktop Icons Grid - Aligned to the left */}
-        <div className="absolute inset-0 p-6">
-          <div className="flex flex-col gap-4 items-start">
+        {/* Desktop Icons Grid - Responsive layout */}
+        <div className="absolute inset-0 p-4 pb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 h-full content-start">
             {desktopIcons.map((icon, index) => (
-              <DesktopIcon
-                key={icon.id}
-                {...icon}
-                onClick={() => openWindow(icon)}
-                style={{ animationDelay: `${index * 100}ms` }}
-                isDark={isDark}
-              />
+              <div key={icon.id} className="flex justify-center">
+                <DesktopIcon
+                  {...icon}
+                  onClick={() => openWindow(icon)}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                  isDark={isDark}
+                />
+              </div>
             ))}
           </div>
         </div>

@@ -12,43 +12,39 @@ interface DesktopIconProps {
 
 export const DesktopIcon: React.FC<DesktopIconProps> = ({ title, icon, onClick, style, isDark }) => {
   const [isPressed, setIsPressed] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <div
       className={`
-        flex flex-col items-center p-3 rounded-xl cursor-pointer transition-all duration-300
-        hover:bg-white/20 active:bg-white/30 backdrop-blur-md
-        animate-fade-in group w-20 hover:scale-110 transform
-        ${isPressed ? 'scale-95' : ''}
-        ${isHovered ? 'shadow-lg shadow-black/20' : ''}
-        border border-white/10
+        flex flex-col items-center p-2 cursor-pointer transition-all duration-200
+        w-20 h-20 hover:bg-blue-600/30 rounded
+        ${isSelected ? 'bg-blue-600/50' : ''}
+        ${isPressed ? 'scale-95' : 'hover:scale-105'}
+        animate-fade-in group
       `}
       onClick={onClick}
       onMouseDown={() => setIsPressed(true)}
       onMouseUp={() => setIsPressed(false)}
-      onMouseLeave={() => {
-        setIsPressed(false);
-        setIsHovered(false);
-      }}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsPressed(false)}
+      onDoubleClick={() => setIsSelected(!isSelected)}
       style={style}
       title={title}
     >
+      {/* Icon Container - Windows 95 style */}
       <div className={`
-        mb-2 p-3 rounded-2xl transition-all duration-300 
-        ${isDark ? 'bg-gray-800/60' : 'bg-white/60'} 
-        group-hover:shadow-xl group-hover:shadow-black/30
-        backdrop-blur-sm border border-white/20
-        ${isHovered ? 'rotate-3 scale-105' : ''}
+        mb-1 p-2 transition-all duration-200 
+        ${isPressed ? 'transform translate-x-0.5 translate-y-0.5' : ''}
       `}>
         {icon}
       </div>
+      
+      {/* Icon Label */}
       <span className={`
-        text-center font-semibold text-xs leading-tight
+        text-center font-bold text-xs leading-tight
         ${isDark ? 'text-white' : 'text-white'} 
-        drop-shadow-lg text-shadow-lg max-w-16 truncate
-        ${isHovered ? 'scale-105' : ''}
+        drop-shadow-lg max-w-16 truncate
+        ${isSelected ? 'bg-blue-600 px-1' : ''}
       `}>
         {title}
       </span>

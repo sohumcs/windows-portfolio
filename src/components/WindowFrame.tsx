@@ -72,63 +72,63 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
     : {
         top: window.position.y,
         left: window.position.x,
-        width: Math.min(window.size.width, window.innerWidth - 40),
-        height: Math.min(window.size.height, window.innerHeight - 80)
+        width: Math.min(window.size.width, globalThis.innerWidth - 40),
+        height: Math.min(window.size.height, globalThis.innerHeight - 80)
       };
 
   return (
     <div
       ref={windowRef}
       className={`
-        fixed z-50 rounded-lg shadow-2xl border animate-scale-in backdrop-blur-sm
-        ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'}
+        fixed z-50 border-2 animate-scale-in
+        ${isDark ? 'bg-gray-400 border-gray-600' : 'bg-gray-300 border-gray-600'}
         ${isDragging ? 'cursor-grabbing' : ''}
       `}
       style={windowStyle}
     >
-      {/* Title Bar */}
+      {/* Windows 95 Title Bar */}
       <div
         className={`
-          flex items-center justify-between px-4 py-2 rounded-t-lg cursor-grab active:cursor-grabbing
+          flex items-center justify-between px-2 py-1 cursor-grab active:cursor-grabbing
           ${isDark 
-            ? 'bg-gray-800/90 border-b border-gray-700' 
-            : 'bg-gray-50/90 border-b border-gray-200'
+            ? 'bg-gradient-to-r from-blue-800 to-blue-600' 
+            : 'bg-gradient-to-r from-blue-600 to-blue-400'
           }
         `}
         onMouseDown={handleMouseDown}
       >
-        <div className="flex items-center gap-3">
-          <div className={`text-lg ${isDark ? 'text-white' : 'text-gray-800'}`}>{window.icon}</div>
-          <span className={`font-medium text-sm ${isDark ? 'text-white' : 'text-gray-800'}`}>{window.title}</span>
+        <div className="flex items-center gap-2">
+          <div className="text-sm text-white">{window.icon}</div>
+          <span className="font-bold text-sm text-white">{window.title}</span>
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex gap-1">
           <button
             onClick={onMinimize}
-            className="w-8 h-8 bg-transparent hover:bg-gray-500/20 rounded flex items-center justify-center transition-colors group"
+            className="w-6 h-6 bg-gray-300 border border-gray-600 hover:bg-gray-200 flex items-center justify-center text-xs font-bold"
             title="Minimize"
           >
-            <Minus className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-600'} group-hover:text-white`} />
+            _
           </button>
           <button
             onClick={onMaximize}
-            className="w-8 h-8 bg-transparent hover:bg-gray-500/20 rounded flex items-center justify-center transition-colors group"
+            className="w-6 h-6 bg-gray-300 border border-gray-600 hover:bg-gray-200 flex items-center justify-center text-xs font-bold"
             title="Maximize"
           >
-            <Square className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-600'} group-hover:text-white`} />
+            □
           </button>
           <button
             onClick={onClose}
-            className="w-8 h-8 bg-transparent hover:bg-red-500 rounded flex items-center justify-center transition-colors group"
+            className="w-6 h-6 bg-gray-300 border border-gray-600 hover:bg-red-400 flex items-center justify-center text-xs font-bold"
             title="Close"
           >
-            <X className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-600'} group-hover:text-white`} />
+            ×
           </button>
         </div>
       </div>
 
       {/* Window Content */}
-      <div className="h-full overflow-auto rounded-b-lg">
+      <div className="h-full overflow-auto border-2 border-inset border-gray-400 bg-gray-200">
         {children}
       </div>
     </div>
