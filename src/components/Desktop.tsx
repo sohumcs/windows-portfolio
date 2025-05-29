@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { DesktopIcon } from './DesktopIcon';
 import { WindowManager } from './WindowManager';
 import { ModernTaskbar } from './ModernTaskbar';
 import { ModernStartMenu } from './ModernStartMenu';
 import { NotificationSystem } from './NotificationSystem';
-import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal, Palette, Gamepad, Search, Book } from 'lucide-react';
+import { User, Briefcase, FileText, ExternalLink, Clock, Trash2, Terminal, Palette, Gamepad, Search, Book, Paintbrush } from 'lucide-react';
 
 export interface WindowConfig {
   id: string;
@@ -27,10 +26,17 @@ export const Desktop = () => {
   const desktopIcons = [
     { 
       id: 'about', 
-      title: 'About Me', 
+      title: 'My Briefcase', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-gray-800 flex items-center justify-center">
-          <User className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-yellow-300 via-yellow-400 to-yellow-600 border border-gray-800 rounded-sm shadow-lg transform perspective-100 rotate-y-5">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-yellow-200 to-yellow-500 rounded-sm">
+              <div className="w-full h-2 bg-gradient-to-b from-gray-600 to-gray-800 rounded-t-sm"></div>
+              <div className="flex justify-center mt-1">
+                <div className="w-1 h-1 bg-gray-800 rounded-full"></div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'AboutMe' 
@@ -39,8 +45,15 @@ export const Desktop = () => {
       id: 'projects', 
       title: 'My Projects', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 border-2 border-gray-800 flex items-center justify-center">
-          <Briefcase className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-blue-300 via-blue-400 to-blue-600 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-blue-200 to-blue-500 rounded-sm">
+              <div className="flex flex-col items-center justify-center h-full">
+                <div className="w-4 h-3 bg-white rounded-sm mb-0.5 border border-gray-400"></div>
+                <div className="w-3 h-0.5 bg-gray-600 rounded"></div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Projects' 
@@ -49,58 +62,106 @@ export const Desktop = () => {
       id: 'resume', 
       title: 'Resume', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-red-600 border-2 border-gray-800 flex items-center justify-center">
-          <FileText className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-white via-gray-100 to-gray-300 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-white to-gray-200 rounded-sm">
+              <div className="flex flex-col p-1 h-full">
+                <div className="w-full h-0.5 bg-gray-400 mb-0.5"></div>
+                <div className="w-3/4 h-0.5 bg-gray-400 mb-0.5"></div>
+                <div className="w-full h-0.5 bg-gray-400 mb-0.5"></div>
+                <div className="w-2/3 h-0.5 bg-gray-400"></div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Resume' 
     },
     { 
       id: 'connect', 
-      title: 'Connect', 
+      title: 'Network', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-600 border-2 border-gray-800 flex items-center justify-center">
-          <ExternalLink className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-gray-300 via-gray-400 to-gray-600 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-gray-200 to-gray-500 rounded-sm">
+              <div className="flex items-center justify-center h-full">
+                <div className="w-4 h-3 bg-black rounded-sm border border-gray-300">
+                  <div className="w-full h-1 bg-green-400 rounded-t-sm"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Connect' 
     },
     { 
       id: 'experience', 
-      title: 'Work Experience', 
+      title: 'Control Panel', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 border-2 border-gray-800 flex items-center justify-center">
-          <Clock className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-gray-300 via-gray-400 to-gray-600 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-gray-200 to-gray-500 rounded-sm">
+              <div className="grid grid-cols-2 gap-0.5 p-1 h-full">
+                <div className="bg-blue-500 rounded-sm"></div>
+                <div className="bg-red-500 rounded-sm"></div>
+                <div className="bg-green-500 rounded-sm"></div>
+                <div className="bg-yellow-500 rounded-sm"></div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Experience' 
     },
     { 
       id: 'terminal', 
-      title: 'Terminal', 
+      title: 'MS-DOS Prompt', 
       icon: (
-        <div className="w-8 h-8 bg-black border-2 border-gray-800 flex items-center justify-center">
-          <Terminal className="w-4 h-4 text-green-400" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-black border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-black rounded-sm p-1">
+              <div className="text-green-400 text-xs font-mono">C:\></div>
+              <div className="w-1 h-2 bg-green-400 animate-pulse"></div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Terminal' 
     },
     { 
-      id: 'theme', 
-      title: 'Theme Settings', 
+      id: 'paint', 
+      title: 'Paint', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-600 border-2 border-gray-800 flex items-center justify-center">
-          <Palette className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-white via-gray-100 to-gray-300 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-white to-gray-200 rounded-sm">
+              <div className="relative h-full">
+                <div className="absolute top-1 left-1 w-2 h-3 bg-yellow-400 rounded-sm transform rotate-12"></div>
+                <div className="absolute top-2 right-1 w-1 h-2 bg-red-500 rounded-sm"></div>
+                <div className="absolute bottom-1 left-2 w-1 h-1 bg-blue-500 rounded-full"></div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
-      component: 'ThemeSettings' 
+      component: 'Paint' 
     },
     { 
       id: 'myspace', 
-      title: 'MySpace', 
+      title: 'Notepad', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-cyan-600 border-2 border-gray-800 flex items-center justify-center">
-          <Book className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-white via-gray-100 to-gray-300 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-white to-gray-200 rounded-sm">
+              <div className="flex flex-col p-1 h-full">
+                <div className="w-full h-0.5 bg-blue-400 mb-0.5"></div>
+                <div className="w-4 h-0.5 bg-gray-400 mb-0.5"></div>
+                <div className="w-5 h-0.5 bg-gray-400 mb-0.5"></div>
+                <div className="w-3 h-0.5 bg-gray-400"></div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'MySpace' 
@@ -109,8 +170,18 @@ export const Desktop = () => {
       id: 'games', 
       title: 'Games', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-indigo-400 to-indigo-600 border-2 border-gray-800 flex items-center justify-center">
-          <Gamepad className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-red-300 via-red-400 to-red-600 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-red-200 to-red-500 rounded-sm">
+              <div className="flex items-center justify-center h-full">
+                <div className="w-4 h-3 bg-white rounded-sm border border-gray-400">
+                  <div className="flex justify-center items-center h-full">
+                    <div className="w-1 h-1 bg-black rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Games' 
@@ -119,8 +190,18 @@ export const Desktop = () => {
       id: 'browser', 
       title: 'Internet Explorer', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 border-2 border-gray-800 flex items-center justify-center">
-          <Search className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-blue-300 via-blue-500 to-blue-700 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-blue-200 to-blue-600 rounded-sm">
+              <div className="flex items-center justify-center h-full">
+                <div className="w-4 h-4 border-2 border-white rounded-full">
+                  <div className="w-full h-full bg-gradient-to-br from-yellow-300 to-orange-500 rounded-full flex items-center justify-center">
+                    <div className="text-xs font-bold text-blue-800">e</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'Browser' 
@@ -129,8 +210,19 @@ export const Desktop = () => {
       id: 'recycle', 
       title: 'Recycle Bin', 
       icon: (
-        <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-600 border-2 border-gray-800 flex items-center justify-center">
-          <Trash2 className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 bg-gradient-to-b from-gray-300 via-gray-400 to-gray-600 border border-gray-800 rounded-sm shadow-lg">
+            <div className="absolute inset-0.5 bg-gradient-to-b from-gray-200 to-gray-500 rounded-sm">
+              <div className="flex items-center justify-center h-full">
+                <div className="w-4 h-5 bg-gradient-to-b from-gray-600 to-gray-800 rounded-sm">
+                  <div className="w-full h-1 bg-gray-500 rounded-t-sm"></div>
+                  <div className="flex justify-center mt-0.5">
+                    <div className="w-2 h-2 border border-gray-300 rounded-sm bg-gray-100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ), 
       component: 'RecycleBin' 
@@ -208,7 +300,6 @@ export const Desktop = () => {
     }
   };
 
-  // Calculate grid layout for icons
   const getIconsInColumns = () => {
     const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
     const taskbarHeight = 48;
@@ -240,7 +331,6 @@ export const Desktop = () => {
       className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}
       onClick={handleDesktopClick}
     >
-      {/* Windows 95 Blue Sky Background */}
       <div 
         className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
@@ -248,7 +338,6 @@ export const Desktop = () => {
           backgroundColor: '#008080'
         }}
       >
-        {/* Desktop Icons in Column Layout */}
         <div className="absolute inset-0 p-4 pb-16">
           <div className="flex gap-2 h-full">
             {getIconsInColumns().map((column, columnIndex) => (
@@ -267,7 +356,6 @@ export const Desktop = () => {
           </div>
         </div>
 
-        {/* Window Manager */}
         <WindowManager
           windows={openWindows}
           onClose={closeWindow}
@@ -278,7 +366,6 @@ export const Desktop = () => {
           onThemeChange={toggleTheme}
         />
 
-        {/* Start Menu */}
         {showStartMenu && (
           <ModernStartMenu
             onClose={() => setShowStartMenu(false)}
@@ -292,7 +379,6 @@ export const Desktop = () => {
           />
         )}
 
-        {/* Taskbar */}
         <ModernTaskbar
           openWindows={openWindows}
           onStartClick={handleStartClick}
@@ -307,7 +393,6 @@ export const Desktop = () => {
           isDark={isDark}
         />
 
-        {/* Notification System */}
         <NotificationSystem notifications={notifications} />
       </div>
     </div>

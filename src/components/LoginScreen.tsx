@@ -8,12 +8,11 @@ interface LoginScreenProps {
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('Developer');
+  const [username, setUsername] = useState('Guest');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = () => {
     setIsLoading(true);
-    // Simulate Windows 95 login delay
     setTimeout(() => {
       onLogin();
     }, 1500);
@@ -27,30 +26,38 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
 
   return (
     <div 
-      className="min-h-screen bg-teal-600 flex items-center justify-center"
+      className="min-h-screen flex items-center justify-center relative"
       style={{
-        backgroundImage: `url('/lovable-uploads/5f85bb9d-f696-471b-9300-4553b6e2010e.png')`,
         backgroundColor: '#008080'
       }}
     >
-      <div className="bg-gray-300 border-4 border-gray-600 p-8 shadow-2xl">
+      {/* Background pattern overlay */}
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `url('/lovable-uploads/5f85bb9d-f696-471b-9300-4553b6e2010e.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      
+      <div className="bg-gray-300 border-4 border-gray-600 p-8 shadow-2xl relative z-10">
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800 mb-2">Windows 95</h1>
-          <p className="text-sm text-gray-600">Portfolio Operating System</p>
+          <p className="text-sm text-gray-600">Guest Login</p>
         </div>
 
-        {/* User Profile Section */}
         <div className="flex items-center gap-4 mb-6 p-4 bg-gray-200 border-2 border-gray-600">
           <div className="w-16 h-16 bg-blue-500 border-2 border-gray-600 flex items-center justify-center">
             <User className="w-8 h-8 text-white" />
           </div>
           <div>
             <h2 className="font-bold text-gray-800">{username}</h2>
-            <p className="text-sm text-gray-600">Portfolio Developer</p>
+            <p className="text-sm text-gray-600">System User</p>
           </div>
         </div>
 
-        {/* Login Form */}
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-bold text-gray-800 mb-2">

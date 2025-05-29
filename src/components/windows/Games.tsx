@@ -15,7 +15,6 @@ export const Games = () => {
 
   return (
     <div className="h-full bg-gray-100 flex flex-col">
-      {/* Games Header */}
       <div className="bg-blue-600 text-white p-3 border-b-2 border-gray-400 flex-shrink-0">
         <div className="flex items-center gap-3">
           <Gamepad className="w-6 h-6" />
@@ -28,7 +27,6 @@ export const Games = () => {
       </div>
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Game Selection Sidebar */}
         <div className="w-56 bg-gray-200 border-r-2 border-gray-400 p-3 flex-shrink-0">
           <h2 className="font-bold text-gray-800 mb-3 text-sm">Select Game:</h2>
           {games.map((game) => (
@@ -59,7 +57,6 @@ export const Games = () => {
           </div>
         </div>
 
-        {/* Game Content Area */}
         <div className="flex-1 p-4 overflow-auto">
           {selectedGame === 'minesweeper' && <MinesweeperGame onScoreChange={setScore} />}
           {selectedGame === 'solitaire' && <SolitaireGame onScoreChange={setScore} />}
@@ -105,9 +102,9 @@ const MinesweeperGame = ({ onScoreChange }: { onScoreChange: (score: number) => 
     
     if (mines.has(index)) {
       newBoard[index] = '💥';
+      setBoard(newBoard);
       setGameState('lost');
     } else {
-      // Count adjacent mines
       const row = Math.floor(index / 8);
       const col = index % 8;
       let adjacentMines = 0;
@@ -119,14 +116,13 @@ const MinesweeperGame = ({ onScoreChange }: { onScoreChange: (score: number) => 
       }
       
       newBoard[index] = adjacentMines > 0 ? adjacentMines.toString() : ' ';
+      setBoard(newBoard);
       
-      // Check win condition
       if (newRevealedCells.size === 64 - 10) {
         setGameState('won');
         onScoreChange(100);
       }
     }
-    setBoard(newBoard);
   };
 
   return (
@@ -192,13 +188,11 @@ const SnakeGame = ({ onScoreChange }: { onScoreChange: (score: number) => void }
       head.x += direction.x;
       head.y += direction.y;
 
-      // Check wall collision
       if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20) {
         setGameRunning(false);
         return prevSnake;
       }
 
-      // Check self collision
       if (newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
         setGameRunning(false);
         return prevSnake;
@@ -206,21 +200,18 @@ const SnakeGame = ({ onScoreChange }: { onScoreChange: (score: number) => void }
 
       newSnake.unshift(head);
 
-      // Check food collision
       if (head.x === food.x && head.y === food.y) {
         setFood({ x: Math.floor(Math.random() * 20), y: Math.floor(Math.random() * 20) });
-        setGameScore(prev => {
-          const newScore = prev + 10;
-          onScoreChange(newScore);
-          return newScore;
-        });
+        const newScore = gameScore + 10;
+        setGameScore(newScore);
+        onScoreChange(newScore);
       } else {
         newSnake.pop();
       }
 
       return newSnake;
     });
-  }, [direction, food, gameRunning, onScoreChange]);
+  }, [direction, food, gameRunning, gameScore, onScoreChange]);
 
   useEffect(() => {
     const gameInterval = setInterval(moveSnake, 200);
@@ -261,24 +252,26 @@ const SnakeGame = ({ onScoreChange }: { onScoreChange: (score: number) => void }
     <div className="text-center">
       <h2 className="text-xl font-bold mb-4">🐍 Snake Game</h2>
       <div className="bg-black border-4 border-gray-600 inline-block p-4">
-        <div className="w-80 h-80 bg-green-900 border border-green-500 relative mb-4 grid grid-cols-20">
-          {Array.from({ length: 400 }, (_, index) => {
-            const x = index % 20;
-            const y = Math.floor(index / 20);
-            const isSnake = snake.some(segment => segment.x === x && segment.y === y);
-            const isFood = food.x === x && food.y === y;
-            
-            return (
-              <div
-                key={index}
-                className={`w-4 h-4 ${
-                  isSnake ? 'bg-green-400' : 
-                  isFood ? 'bg-red-500' : 
-                  'bg-green-900'
-                }`}
-              />
-            );
-          })}
+        <div className="w-80 h-80 bg-green-900 border border-green-500 relative mb-4">
+          <div className="absolute inset-0 grid grid-cols-20">
+            {Array.from({ length: 400 }, (_, index) => {
+              const x = index % 20;
+              const y = Math.floor(index / 20);
+              const isSnake = snake.some(segment => segment.x === x && segment.y === y);
+              const isFood = food.x === x && food.y === y;
+              
+              return (
+                <div
+                  key={index}
+                  className={`w-4 h-4 ${
+                    isSnake ? 'bg-green-400' : 
+                    isFood ? 'bg-red-500' : 
+                    'bg-green-900'
+                  }`}
+                />
+              );
+            })}
+          </div>
           
           {!gameRunning && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -316,7 +309,6 @@ const SolitaireGame = ({ onScoreChange }: { onScoreChange: (score: number) => vo
       }
     }
     
-    // Shuffle deck
     for (let i = deck.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -380,11 +372,9 @@ const TetrisGame = ({ onScoreChange }: { onScoreChange: (score: number) => void 
     });
     
     setBoard(newBoard);
-    setGameScore(prev => {
-      const newScore = prev + 25;
-      onScoreChange(newScore);
-      return newScore;
-    });
+    const newScore = gameScore + 25;
+    setGameScore(newScore);
+    onScoreChange(newScore);
     setLines(prev => prev + 1);
     if (lines % 10 === 0) setLevel(prev => prev + 1);
   };

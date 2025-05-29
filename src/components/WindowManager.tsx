@@ -13,6 +13,7 @@ import { ThemeSettings } from './windows/ThemeSettings';
 import { MySpace } from './windows/MySpace';
 import { Games } from './windows/Games';
 import { Browser } from './windows/Browser';
+import { Paint } from './windows/Paint';
 
 interface WindowManagerProps {
   windows: WindowConfig[];
@@ -57,6 +58,8 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
         return <Games />;
       case 'Browser':
         return <Browser />;
+      case 'Paint':
+        return <Paint />;
       default:
         return <div className="p-4">Content not found</div>;
     }
