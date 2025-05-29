@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { DesktopIcon } from './DesktopIcon';
 import { WindowManager } from './WindowManager';
@@ -27,67 +28,111 @@ export const Desktop = () => {
     { 
       id: 'about', 
       title: 'About Me', 
-      icon: <User className="w-8 h-8 text-blue-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-gray-800 flex items-center justify-center">
+          <User className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'AboutMe' 
     },
     { 
       id: 'projects', 
       title: 'My Projects', 
-      icon: <Briefcase className="w-8 h-8 text-green-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 border-2 border-gray-800 flex items-center justify-center">
+          <Briefcase className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'Projects' 
     },
     { 
       id: 'resume', 
       title: 'Resume', 
-      icon: <FileText className="w-8 h-8 text-red-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-red-600 border-2 border-gray-800 flex items-center justify-center">
+          <FileText className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'Resume' 
     },
     { 
       id: 'connect', 
       title: 'Connect', 
-      icon: <ExternalLink className="w-8 h-8 text-purple-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-600 border-2 border-gray-800 flex items-center justify-center">
+          <ExternalLink className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'Connect' 
     },
     { 
       id: 'experience', 
       title: 'Work Experience', 
-      icon: <Clock className="w-8 h-8 text-orange-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 border-2 border-gray-800 flex items-center justify-center">
+          <Clock className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'Experience' 
     },
     { 
       id: 'terminal', 
       title: 'Terminal', 
-      icon: <Terminal className="w-8 h-8 text-gray-800" />, 
+      icon: (
+        <div className="w-8 h-8 bg-black border-2 border-gray-800 flex items-center justify-center">
+          <Terminal className="w-4 h-4 text-green-400" />
+        </div>
+      ), 
       component: 'Terminal' 
     },
     { 
       id: 'theme', 
       title: 'Theme Settings', 
-      icon: <Palette className="w-8 h-8 text-pink-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-600 border-2 border-gray-800 flex items-center justify-center">
+          <Palette className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'ThemeSettings' 
     },
     { 
       id: 'myspace', 
       title: 'MySpace', 
-      icon: <Book className="w-8 h-8 text-cyan-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-cyan-600 border-2 border-gray-800 flex items-center justify-center">
+          <Book className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'MySpace' 
     },
     { 
       id: 'games', 
       title: 'Games', 
-      icon: <Gamepad className="w-8 h-8 text-indigo-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-indigo-400 to-indigo-600 border-2 border-gray-800 flex items-center justify-center">
+          <Gamepad className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'Games' 
     },
     { 
       id: 'browser', 
       title: 'Internet Explorer', 
-      icon: <Search className="w-8 h-8 text-blue-800" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 border-2 border-gray-800 flex items-center justify-center">
+          <Search className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'Browser' 
     },
     { 
       id: 'recycle', 
       title: 'Recycle Bin', 
-      icon: <Trash2 className="w-8 h-8 text-gray-600" />, 
+      icon: (
+        <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-600 border-2 border-gray-800 flex items-center justify-center">
+          <Trash2 className="w-4 h-4 text-white" />
+        </div>
+      ), 
       component: 'RecycleBin' 
     },
   ];
@@ -157,6 +202,12 @@ export const Desktop = () => {
     setShowStartMenu(!showStartMenu);
   };
 
+  const handleDesktopClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setShowStartMenu(false);
+    }
+  };
+
   // Calculate grid layout for icons
   const getIconsInColumns = () => {
     const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
@@ -187,13 +238,13 @@ export const Desktop = () => {
   return (
     <div 
       className={`min-h-screen transition-all duration-500 ${isDark ? 'dark' : ''}`}
-      onClick={() => setShowStartMenu(false)}
+      onClick={handleDesktopClick}
     >
       {/* Windows 95 Blue Sky Background */}
       <div 
         className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/lovable-uploads/fdd6a3b7-415d-4e64-a0c4-c717fdfa2578.png')`,
+          backgroundImage: `url('/lovable-uploads/5f85bb9d-f696-471b-9300-4553b6e2010e.png')`,
           backgroundColor: '#008080'
         }}
       >
@@ -236,6 +287,7 @@ export const Desktop = () => {
               desktopIcons.slice(0, 5).forEach(icon => openWindow(icon));
               addNotification('All windows opened!', 'success');
             }}
+            onOpenResume={() => openWindow(desktopIcons.find(icon => icon.id === 'resume')!)}
             isDark={isDark}
           />
         )}

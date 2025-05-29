@@ -6,6 +6,7 @@ interface ModernStartMenuProps {
   onClose: () => void;
   onThemeToggle: () => void;
   onOpenAll: () => void;
+  onOpenResume: () => void;
   isDark: boolean;
 }
 
@@ -13,12 +14,13 @@ export const ModernStartMenu: React.FC<ModernStartMenuProps> = ({
   onClose,
   onThemeToggle,
   onOpenAll,
+  onOpenResume,
   isDark
 }) => {
   const quickActions = [
-    { icon: <Github className="w-5 h-5" />, label: 'GitHub', action: () => window.open('https://github.com', '_blank') },
-    { icon: <FileText className="w-5 h-5" />, label: 'Resume', action: () => {} },
-    { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn', action: () => window.open('https://linkedin.com', '_blank') },
+    { icon: <Github className="w-5 h-5" />, label: 'GitHub', action: () => window.open('https://github.com/sohumscs', '_blank') },
+    { icon: <FileText className="w-5 h-5" />, label: 'Resume', action: onOpenResume },
+    { icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn', action: () => window.open('https://linkedin.com/in/sohumscs', '_blank') },
     { icon: <Grid3X3 className="w-5 h-5" />, label: 'Open All', action: onOpenAll },
   ];
 
@@ -41,10 +43,10 @@ export const ModernStartMenu: React.FC<ModernStartMenuProps> = ({
         <div className="p-6 border-b border-gray-200/10">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-              D
+              S
             </div>
             <div>
-              <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Developer</h3>
+              <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Sohum Chandra</h3>
               <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Portfolio OS</p>
             </div>
           </div>
