@@ -153,8 +153,7 @@ export const Desktop = () => {
     addNotification(`Switched to ${isDark ? 'Light' : 'Dark'} mode`, 'success');
   };
 
-  const handleStartClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleStartClick = () => {
     setShowStartMenu(!showStartMenu);
   };
 
@@ -194,7 +193,7 @@ export const Desktop = () => {
       <div 
         className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/lovable-uploads/5f85bb9d-f696-471b-9300-4553b6e2010e.png')`,
+          backgroundImage: `url('/lovable-uploads/fdd6a3b7-415d-4e64-a0c4-c717fdfa2578.png')`,
           backgroundColor: '#008080'
         }}
       >
