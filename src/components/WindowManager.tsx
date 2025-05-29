@@ -21,6 +21,7 @@ interface WindowManagerProps {
   onMaximize: (id: string) => void;
   onUpdatePosition: (id: string, position: { x: number; y: number }) => void;
   isDark: boolean;
+  onThemeChange?: (isDark: boolean) => void;
 }
 
 export const WindowManager: React.FC<WindowManagerProps> = ({
@@ -29,7 +30,8 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
   onMinimize,
   onMaximize,
   onUpdatePosition,
-  isDark
+  isDark,
+  onThemeChange
 }) => {
   const renderWindowContent = (component: string, windowId: string) => {
     switch (component) {
@@ -48,7 +50,7 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
       case 'RecycleBin':
         return <RecycleBin />;
       case 'ThemeSettings':
-        return <ThemeSettings />;
+        return <ThemeSettings isDark={isDark} onThemeChange={onThemeChange || (() => {})} />;
       case 'MySpace':
         return <MySpace />;
       case 'Games':

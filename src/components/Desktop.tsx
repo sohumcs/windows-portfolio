@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DesktopIcon } from './DesktopIcon';
 import { WindowManager } from './WindowManager';
@@ -226,6 +225,7 @@ export const Desktop = () => {
           onMaximize={maximizeWindow}
           onUpdatePosition={updateWindowPosition}
           isDark={isDark}
+          onThemeChange={toggleTheme}
         />
 
         {/* Start Menu */}

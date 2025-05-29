@@ -1,95 +1,119 @@
 
-import React from 'react';
-import { Palette, Sun, Moon, Monitor } from 'lucide-react';
+import React, { useState } from 'react';
+import { Palette, Sun, Moon, Monitor, Check } from 'lucide-react';
 
-export const ThemeSettings = () => {
+interface ThemeSettingsProps {
+  isDark: boolean;
+  onThemeChange: (isDark: boolean) => void;
+}
+
+export const ThemeSettings: React.FC<ThemeSettingsProps> = ({ isDark, onThemeChange }) => {
+  const [selectedTheme, setSelectedTheme] = useState(isDark ? 'dark' : 'light');
+  const [enableAnimations, setEnableAnimations] = useState(true);
+  const [enableSounds, setEnableSounds] = useState(false);
+  const [enableTransparency, setEnableTransparency] = useState(true);
+
+  const handleThemeSelect = (theme: 'light' | 'dark' | 'auto') => {
+    setSelectedTheme(theme);
+    if (theme !== 'auto') {
+      onThemeChange(theme === 'dark');
+    }
+  };
+
+  const themeOptions = [
+    { id: 'light', name: 'High Contrast White', icon: Sun, color: 'from-yellow-400 to-orange-500' },
+    { id: 'dark', name: 'High Contrast Black', icon: Moon, color: 'from-blue-600 to-purple-700' },
+    { id: 'auto', name: 'Windows Default', icon: Monitor, color: 'from-green-500 to-teal-600' }
+  ];
+
   return (
-    <div className="p-6 h-full bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <div className="p-6 h-full bg-gray-100 overflow-auto">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <Palette className="w-8 h-8 text-purple-600 dark:text-purple-400" />
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Theme Settings</h1>
+        <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-gray-400">
+          <Palette className="w-8 h-8 text-purple-600" />
+          <h1 className="text-2xl font-bold text-gray-800">Display Properties</h1>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Light Theme */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 cursor-pointer group">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Sun className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Light Mode</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">Bright and clean interface</p>
-            </div>
-          </div>
-
-          {/* Dark Theme */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 cursor-pointer group">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Moon className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Dark Mode</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">Easy on the eyes</p>
-            </div>
-          </div>
-
-          {/* Auto Theme */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 cursor-pointer group">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Monitor className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Auto</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">Follows system settings</p>
-            </div>
+        {/* Theme Selection */}
+        <div className="mb-8">
+          <h2 className="text-lg font-bold text-gray-800 mb-4">Color Scheme</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {themeOptions.map((theme) => {
+              const IconComponent = theme.icon;
+              return (
+                <button
+                  key={theme.id}
+                  onClick={() => handleThemeSelect(theme.id as any)}
+                  className={`bg-gray-200 border-2 p-6 hover:bg-gray-300 transition-all duration-200 relative ${
+                    selectedTheme === theme.id ? 'border-blue-600 bg-blue-100' : 'border-gray-600'
+                  }`}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${theme.color} flex items-center justify-center mb-4 border-2 border-gray-600`}>
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-sm font-bold text-gray-800 mb-2">{theme.name}</h3>
+                    {selectedTheme === theme.id && (
+                      <Check className="absolute top-2 right-2 w-5 h-5 text-blue-600" />
+                    )}
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Color Palette */}
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Color Palette</h2>
-          <div className="grid grid-cols-6 gap-4">
-            {[
-              'bg-red-500', 'bg-orange-500', 'bg-yellow-500', 
-              'bg-green-500', 'bg-blue-500', 'bg-purple-500',
-              'bg-pink-500', 'bg-indigo-500', 'bg-teal-500',
-              'bg-cyan-500', 'bg-lime-500', 'bg-amber-500'
-            ].map((color, index) => (
-              <div
-                key={index}
-                className={`${color} w-16 h-16 rounded-xl cursor-pointer hover:scale-110 transform transition-all duration-200 shadow-lg hover:shadow-xl`}
-                title={`Color ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Personalization */}
-        <div className="mt-8 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Personalization</h2>
+        {/* Settings */}
+        <div className="bg-gray-200 border-2 border-gray-600 p-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-4">Effects</h2>
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-gray-700 dark:text-gray-300">Animations</span>
-              <div className="w-12 h-6 bg-blue-500 rounded-full relative cursor-pointer">
-                <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 transition-all"></div>
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-700 dark:text-gray-300">Sound Effects</span>
-              <div className="w-12 h-6 bg-gray-300 rounded-full relative cursor-pointer">
-                <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div>
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-700 dark:text-gray-300">Transparency Effects</span>
-              <div className="w-12 h-6 bg-blue-500 rounded-full relative cursor-pointer">
-                <div className="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 transition-all"></div>
-              </div>
-            </div>
+            <ToggleSetting
+              label="Use transition effects for menus and tooltips"
+              checked={enableAnimations}
+              onChange={setEnableAnimations}
+            />
+            <ToggleSetting
+              label="Use the following transition effect for menus and tooltips"
+              checked={enableSounds}
+              onChange={setEnableSounds}
+            />
+            <ToggleSetting
+              label="Show window contents while dragging"
+              checked={enableTransparency}
+              onChange={setEnableTransparency}
+            />
           </div>
+        </div>
+
+        {/* Apply Button */}
+        <div className="mt-6 flex gap-2">
+          <button className="px-6 py-2 bg-gray-200 border-2 border-gray-600 hover:bg-gray-300 active:border-inset font-bold">
+            OK
+          </button>
+          <button className="px-6 py-2 bg-gray-200 border-2 border-gray-600 hover:bg-gray-300 active:border-inset font-bold">
+            Cancel
+          </button>
+          <button className="px-6 py-2 bg-gray-200 border-2 border-gray-600 hover:bg-gray-300 active:border-inset font-bold">
+            Apply
+          </button>
         </div>
       </div>
     </div>
   );
 };
+
+const ToggleSetting: React.FC<{
+  label: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}> = ({ label, checked, onChange }) => (
+  <div className="flex items-center gap-3">
+    <button
+      onClick={() => onChange(!checked)}
+      className={`w-4 h-4 border-2 border-gray-600 ${checked ? 'bg-blue-500' : 'bg-white'} flex items-center justify-center`}
+    >
+      {checked && <Check className="w-3 h-3 text-white" />}
+    </button>
+    <span className="text-sm text-gray-800">{label}</span>
+  </div>
+);
