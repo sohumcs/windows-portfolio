@@ -24,35 +24,35 @@ export const Experience = () => {
     },
     {
       id: 1,
-      company: 'Digital Solutions Ltd.',
-      position: 'Full Stack Developer',
-      location: 'San Francisco, CA',
-      duration: '2020 - 2022',
+      company: 'D-Town Robotics Pvt Ltd.',
+      position: 'Software Engineering Intern',
+      location: 'Noida, Uttar Pradesh, India',
+      duration: 'Dec 2024 - Jan 2025',
       type: 'Full-time',
-      description: 'Developed responsive web applications and real-time features.',
+      description: 'Assisted in building mobile and web-based drone support systems.',
       achievements: [
-        'Built responsive interfaces serving 50K+ daily users',
-        'Integrated real-time chat using WebSocket technology',
+        'Developed Vari Android app for AI-based crop health',
+        'Built custom Ground Control Station (GCS)',
         'Improved user experience metrics by 35%',
         'Collaborated with cross-functional teams in agile environment'
       ],
-      technologies: ['Vue.js', 'Python', 'MongoDB', 'Docker', 'Redis']
+      technologies: ['Kotlin', 'Python', 'Flask', 'Mission Planner', 'C#']
     },
     {
       id: 2,
-      company: 'StartupXYZ',
-      position: 'Frontend Developer',
-      location: 'New York, NY',
-      duration: '2019 - 2020',
-      type: 'Full-time',
-      description: 'Focused on creating engaging user interfaces and mobile-first experiences.',
+      company: 'Outlier AI',
+      position: 'AI Research Intern',
+      location: 'Oakland California',
+      duration: 'Sep 2024 - Mar 2025',
+      type: 'Remote',
+      description: 'Contributed to training and optimizing custom AI/ML models.',
       achievements: [
-        'Developed mobile-first responsive designs',
-        'Integrated multiple third-party APIs',
-        'Participated in agile development process',
-        'Delivered projects consistently ahead of schedule'
+        'Fine-tuned models for improved accuracy',
+        'Modified model behavior via prompt engineering',
+        'Conducted data experiments and evaluations',
+        'Documented model outputs and issues'
       ],
-      technologies: ['JavaScript', 'React', 'HTML5', 'CSS3', 'Sass']
+      technologies: ['JavaScript', 'React', 'Python', 'Various LLMs']
     }
   ];
 
@@ -63,7 +63,7 @@ export const Experience = () => {
         <Clock className="w-5 h-5 text-blue-600" />
         <span className="font-medium text-gray-800">Work Experience Timeline</span>
         <div className="ml-auto text-sm text-gray-600">
-          {experiences.length} positions • {new Date().getFullYear() - 2019} years experience
+          {experiences.length} positions • {new Date().getFullYear() - 2023} years experience
         </div>
       </div>
 

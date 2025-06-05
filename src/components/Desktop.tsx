@@ -121,7 +121,7 @@ export const Desktop = () => {
         <div className="w-8 h-8 relative">
           <div className="w-8 h-8 bg-black border border-gray-800 rounded-sm shadow-lg">
             <div className="absolute inset-0.5 bg-black rounded-sm p-1">
-              <div className="text-green-400 text-xs font-mono">C:\></div>
+              <div className="text-green-400 text-xs font-mono">C:\</div>
               <div className="w-1 h-2 bg-green-400 animate-pulse"></div>
             </div>
           </div>
@@ -149,7 +149,7 @@ export const Desktop = () => {
     },
     { 
       id: 'myspace', 
-      title: 'Notepad', 
+      title: 'MySpace', 
       icon: (
         <div className="w-8 h-8 relative">
           <div className="w-8 h-8 bg-gradient-to-b from-white via-gray-100 to-gray-300 border border-gray-800 rounded-sm shadow-lg">

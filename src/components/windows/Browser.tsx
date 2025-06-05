@@ -60,8 +60,8 @@ export const Browser = () => {
 
   const quickLinks = [
     { name: 'Portfolio Search', url: 'Sohum Chandra Srivastava portfolio' },
-    { name: 'GitHub Profile', url: 'github.com/sohumscs' },
-    { name: 'LinkedIn Profile', url: 'linkedin.com/in/sohumscs' },
+    { name: 'GitHub Profile', url: 'github.com/sohumcs' },
+    { name: 'LinkedIn Profile', url: 'linkedin.com/in/sohumcs' },
     { name: 'React Documentation', url: 'react.dev' },
     { name: 'TypeScript Docs', url: 'typescriptlang.org' },
   ];
@@ -170,17 +170,17 @@ export const Browser = () => {
                 <div className="space-y-4 text-left">
                   <div className="border-b pb-4">
                     <h3 className="text-lg font-bold text-blue-600">Sohum Chandra Srivastava - Portfolio</h3>
-                    <p className="text-green-600 text-sm">https://sohumscs.portfolio.dev</p>
+                    <p className="text-green-600 text-sm">https://sohumcs.portfolio.dev</p>
                     <p className="text-gray-700">Full-stack developer specializing in React, TypeScript, and modern web technologies. Check out my projects and experience.</p>
                   </div>
                   <div className="border-b pb-4">
-                    <h3 className="text-lg font-bold text-blue-600">GitHub - sohumscs</h3>
-                    <p className="text-green-600 text-sm">https://github.com/sohumscs</p>
+                    <h3 className="text-lg font-bold text-blue-600">GitHub - sohumcs</h3>
+                    <p className="text-green-600 text-sm">https://github.com/sohumcs</p>
                     <p className="text-gray-700">Repository collection showcasing various projects in web development, machine learning, and software engineering.</p>
                   </div>
                   <div className="border-b pb-4">
                     <h3 className="text-lg font-bold text-blue-600">LinkedIn Profile</h3>
-                    <p className="text-green-600 text-sm">https://linkedin.com/in/sohumscs</p>
+                    <p className="text-green-600 text-sm">https://linkedin.com/in/sohumcs</p>
                     <p className="text-gray-700">Professional network profile with work experience, education, and career achievements.</p>
                   </div>
                 </div>

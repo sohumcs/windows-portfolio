@@ -11,9 +11,9 @@ export const Projects = () => {
       name: 'Web Applications',
       type: 'folder',
       items: [
-        { name: 'E-Commerce Platform', type: 'file', tech: 'React, Node.js, PostgreSQL', demo: '#', github: '#' },
-        { name: 'Social Media Dashboard', type: 'file', tech: 'Vue.js, Express, MongoDB', demo: '#', github: '#' },
-        { name: 'Task Management App', type: 'file', tech: 'React, Firebase, Tailwind', demo: '#', github: '#' },
+        { name: 'Healing Miracles E-Commerce Platform', type: 'file', tech: 'React, Typescript, Flask, PostgreSQL', demo: 'https://www.healinggmiracles.com/', github: 'https://github.com/sohumcs/healingg-miracles' },
+        { name: 'AFS Basketball Academy Website', type: 'file', tech: 'React, Flask, PostgreSQL', demo: 'https://www.afsacademy.co.in/', github: 'https://github.com/sohumcs/afs-final' },
+        { name: 'Cricket Comparison Tool', type: 'file', tech: 'React, Tailwind, API Functionality', demo: 'https://sohumcs.github.io/cricket-comparison-tool/', github: 'https://github.com/sohumcs/cricket-comparison-tool' },
       ]
     },
     {
@@ -21,8 +21,7 @@ export const Projects = () => {
       name: 'Mobile Applications',
       type: 'folder',
       items: [
-        { name: 'Fitness Tracker', type: 'file', tech: 'React Native, Firebase', demo: '#', github: '#' },
-        { name: 'Weather App', type: 'file', tech: 'Flutter, OpenWeather API', demo: '#', github: '#' },
+        { name: 'Crop Fertility Detection using VARI Analysis', type: 'file', tech: 'Kotlin, Firebase, ', demo: 'https://github.com/sohumcs/vari-android', github: 'https://github.com/sohumcs/vari-android' }
       ]
     },
     {
@@ -30,8 +29,8 @@ export const Projects = () => {
       name: 'AI & Machine Learning',
       type: 'folder',
       items: [
-        { name: 'Chatbot Assistant', type: 'file', tech: 'Python, TensorFlow, NLP', demo: '#', github: '#' },
-        { name: 'Image Recognition Tool', type: 'file', tech: 'Python, OpenCV, PyTorch', demo: '#', github: '#' },
+        { name: 'Chatbot Assistant', type: 'file', tech: 'Python, TensorFlow, NLP', demo: 'https://github.com/ANJULS09/AI-text-Assistant', github: 'https://github.com/ANJULS09/AI-text-Assistant' },
+        { name: 'Crop fertility Detection Model', type: 'file', tech: 'Python, OpenCV, TensorFlow', demo: 'https://github.com/sohumcs/vari-model', github: 'https://github.com/sohumcs/vari-model' },
       ]
     },
     {
@@ -39,8 +38,7 @@ export const Projects = () => {
       name: 'Game Development',
       type: 'folder',
       items: [
-        { name: '2D Puzzle Game', type: 'file', tech: 'Unity, C#', demo: '#', github: '#' },
-        { name: 'Web-based RPG', type: 'file', tech: 'JavaScript, Canvas API', demo: '#', github: '#' },
+        { name: 'Coming Soon', type: 'file', tech: 'Unreal Engine', demo: 'https://github.com/sohumcs', github: 'https://github.com/sohumcs' }
       ]
     }
   ];

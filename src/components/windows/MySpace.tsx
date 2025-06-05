@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { Book, User, Code, Gamepad, Music, Camera } from 'lucide-react';
+import React from "react";
+import { Book, User, Code, Gamepad, Music, Camera } from "lucide-react";
 
 export const MySpace = () => {
   return (
@@ -15,7 +14,9 @@ export const MySpace = () => {
           </div>
           <div>
             <h1 className="text-2xl font-bold">Sohum Chandra Srivastava</h1>
-            <p className="text-purple-200">Software Developer | AI Enthusiast | Tech Explorer</p>
+            <p className="text-purple-200">
+              Software Developer | AI Enthusiast | Tech Explorer
+            </p>
           </div>
         </div>
       </div>
@@ -29,9 +30,11 @@ export const MySpace = () => {
               <h2 className="text-lg font-bold text-purple-800">About Me</h2>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed">
-              Hey there! I'm Sohum, a passionate Computer Science student at SRM Institute of Technology. 
-              I love building innovative solutions with AI and ML, developing mobile apps, and exploring 
-              the latest in technology. Currently interning at Outline AI and working on exciting UAV projects!
+              Hi! I’m Sohum, a Computer Science student at SRM Institute of
+              Science and Technology. I specialize in web development and AI/ML,
+              with experience from internships at Outlier AI and D-Town
+              Robotics. I now freelance, building full-stack web solutions and
+              delivering impactful tech projects for real-world clients.
             </p>
           </div>
 
@@ -44,8 +47,10 @@ export const MySpace = () => {
             <div className="text-sm text-gray-700">
               <p className="font-semibold">SRM Institute of Technology</p>
               <p>B.Tech Computer Science & Engineering</p>
-              <p>CGPA: 9.45/10.00</p>
-              <p className="text-xs text-gray-500 mt-1">Expected Graduation: May 2027</p>
+              <p>CGPA: 9.48/10.00</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Expected Graduation: May 2027
+              </p>
             </div>
           </div>
 
@@ -56,8 +61,23 @@ export const MySpace = () => {
               <h2 className="text-lg font-bold text-green-800">Tech Stack</h2>
             </div>
             <div className="flex flex-wrap gap-2">
-              {['Python', 'Java', 'JavaScript', 'React', 'Kotlin', 'Node.js', 'Flask', 'AI/ML', 'OpenCV', 'AWS'].map((skill) => (
-                <span key={skill} className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">
+              {[
+                "Python",
+                "Java",
+                "JavaScript",
+                "React",
+                "Kotlin",
+                "Node.js",
+                "Flask",
+                "AI/ML",
+                "OpenCV",
+                "Vite",
+                "Tailwind",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium"
+                >
                   {skill}
                 </span>
               ))}
@@ -68,47 +88,64 @@ export const MySpace = () => {
           <div className="bg-white rounded-lg p-4 shadow-lg border-2 border-orange-200">
             <div className="flex items-center gap-2 mb-3">
               <Gamepad className="w-5 h-5 text-orange-600" />
-              <h2 className="text-lg font-bold text-orange-800">Hobbies & Interests</h2>
+              <h2 className="text-lg font-bold text-orange-800">
+                Hobbies & Interests
+              </h2>
             </div>
             <div className="space-y-2 text-sm text-gray-700">
               <div className="flex items-center gap-2">
                 <Code className="w-4 h-4 text-blue-500" />
-                <span>Competitive Programming</span>
+                <span>Solving Programming Challenges</span>
               </div>
               <div className="flex items-center gap-2">
                 <Gamepad className="w-4 h-4 text-green-500" />
-                <span>Game Development (Unity)</span>
+                <span>Reading about emerging technology trends</span>
               </div>
               <div className="flex items-center gap-2">
                 <Music className="w-4 h-4 text-purple-500" />
-                <span>Music Production</span>
+                <span>Listening to Music</span>
               </div>
               <div className="flex items-center gap-2">
                 <Camera className="w-4 h-4 text-red-500" />
-                <span>Drone Photography</span>
+                <span>Photography</span>
               </div>
             </div>
           </div>
 
           {/* Current Projects */}
           <div className="bg-white rounded-lg p-4 shadow-lg border-2 border-red-200 md:col-span-2">
-            <h2 className="text-lg font-bold text-red-800 mb-3">Current Adventures</h2>
+            <h2 className="text-lg font-bold text-red-800 mb-3">
+              Current Adventures
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div className="bg-red-50 p-3 rounded">
-                <h3 className="font-semibold text-red-700">🚁 UAV Development</h3>
-                <p className="text-gray-600">Building drone control systems and AI-powered terrain analysis</p>
+                <h3 className="font-semibold text-red-700">
+                  🚁 UAV Development
+                </h3>
+                <p className="text-gray-600">
+                  Building drone control systems and AI-powered terrain analysis
+                </p>
               </div>
               <div className="bg-blue-50 p-3 rounded">
                 <h3 className="font-semibold text-blue-700">🤖 AI Research</h3>
-                <p className="text-gray-600">Working on disaster simulation models and NLP optimization</p>
+                <p className="text-gray-600">
+                  Working on disaster simulation models and NLP optimization
+                </p>
               </div>
               <div className="bg-green-50 p-3 rounded">
                 <h3 className="font-semibold text-green-700">📱 Mobile Apps</h3>
-                <p className="text-gray-600">Developing Android applications with Kotlin and custom AI models</p>
+                <p className="text-gray-600">
+                  Developing Android applications with Kotlin and custom AI
+                  models
+                </p>
               </div>
               <div className="bg-purple-50 p-3 rounded">
-                <h3 className="font-semibold text-purple-700">🌐 Web Development</h3>
-                <p className="text-gray-600">Building full-stack solutions with React and Flask</p>
+                <h3 className="font-semibold text-purple-700">
+                  🌐 Web Development
+                </h3>
+                <p className="text-gray-600">
+                  Building full-stack solutions with React and Flask
+                </p>
               </div>
             </div>
           </div>
@@ -116,13 +153,15 @@ export const MySpace = () => {
 
         {/* Fun Facts */}
         <div className="mt-6 bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4">
-          <h2 className="text-lg font-bold text-yellow-800 mb-2">🎉 Fun Facts</h2>
+          <h2 className="text-lg font-bold text-yellow-800 mb-2">
+            🎉 Fun Facts
+          </h2>
           <ul className="text-sm text-yellow-700 space-y-1">
-            <li>• Started coding when I was 14</li>
-            <li>• Can solve a Rubik's cube in under 2 minutes</li>
-            <li>• Once built a voice-controlled smart home system using Raspberry Pi</li>
-            <li>• Love exploring new cities and trying local street food</li>
-            <li>• Dream of building the next big AI breakthrough</li>
+            <li>• Started freelancing as a web developer during college</li>
+            <li>• Built a custom Ground Control Station for drones</li>
+            <li>• Passionate about AI-powered agriculture tech</li>
+            <li>• Enjoy experimenting with new programming languages</li>
+            <li>• Always up for solving challenging coding problems</li>
           </ul>
         </div>
       </div>

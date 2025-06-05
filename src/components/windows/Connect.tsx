@@ -8,28 +8,30 @@ export const Connect = () => {
       name: 'GitHub',
       icon: <Github className="w-8 h-8" />,
       description: 'Check out my open source projects and contributions',
-      url: 'https://github.com',
+      url: 'https://github.com/sohumcs',
       color: 'bg-gray-800 hover:bg-gray-700'
     },
     {
       name: 'LinkedIn',
       icon: <Linkedin className="w-8 h-8" />,
       description: 'Connect with me professionally',
-      url: 'https://linkedin.com',
+      url: 'https://www.linkedin.com/in/sohumcs/',
       color: 'bg-blue-600 hover:bg-blue-700'
     },
     {
-      name: 'Email',
-      icon: <Mail className="w-8 h-8" />,
-      description: 'Send me a direct message',
-      url: 'mailto:developer@email.com',
-      color: 'bg-red-500 hover:bg-red-600'
+      
+  name: 'Email',
+  icon: <Mail className="w-6 h-6 text-white" />,
+  description: 'Send me a direct message',
+  url: 'https://mail.google.com/mail/?view=cm&fs=1&to=sohum611@email.com',
+  color: 'bg-red-500 hover:bg-red-600 text-white'
+
     },
     {
       name: 'Portfolio',
       icon: <ExternalLink className="w-8 h-8" />,
       description: 'Visit my personal website',
-      url: 'https://yourportfolio.dev',
+      url: 'https://sohumcs.github.io/portfolio/',
       color: 'bg-purple-600 hover:bg-purple-700'
     }
   ];

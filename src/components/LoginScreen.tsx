@@ -11,12 +11,26 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [username, setUsername] = useState('Guest');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      onLogin();
-    }, 1500);
-  };
+const handleLogin = () => {
+  setIsLoading(true);
+
+  // Try to enter fullscreen mode
+  const docElm = document.documentElement as any;
+  if (docElm.requestFullscreen) {
+    docElm.requestFullscreen();
+  } else if (docElm.mozRequestFullScreen) { /* Firefox */
+    docElm.mozRequestFullScreen();
+  } else if (docElm.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    docElm.webkitRequestFullscreen();
+  } else if (docElm.msRequestFullscreen) { /* IE/Edge */
+    docElm.msRequestFullscreen();
+  }
+
+  setTimeout(() => {
+    onLogin();
+  }, 1500);
+};
+
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
