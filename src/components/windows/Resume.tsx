@@ -101,7 +101,7 @@ Tools: Android Studio, IntelliJ, PyCharm, Jupyter Notebooks, Git,
                               ACHIEVEMENTS
 ================================================================================
 
-• SRM Institute Merit Scholarship Recipient (2023-2027)
+• IOT University-Wide Project Contest Award Winner
 • Lotus Valley International School Technical Excellence Award (2023)
 
 ================================================================================
@@ -247,8 +247,8 @@ Tools: Android Studio, IntelliJ, PyCharm, Jupyter Notebooks, Git,
                               ACHIEVEMENTS
 ================================================================================
 
-• SRM Institute Merit Scholarship Recipient (2023-2027)
 • Lotus Valley International School Technical Excellence Award (2023)
+• IOT University-Wide Project Contest Award Winner
 
 ================================================================================
 Last Updated: ${new Date().toLocaleDateString()}
